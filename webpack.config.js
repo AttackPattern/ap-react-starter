@@ -34,11 +34,11 @@ const common = {
       loader: "style-loader!css-loader"
     }, {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
-      loader: 'url'
+      loader: 'file?name=/fonts/[name].[ext]'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
       loaders: [
-        'url'
+        'file?name=/images/[name].[ext]'
       ]
     }],
   },

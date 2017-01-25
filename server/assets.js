@@ -16,7 +16,7 @@ function asset(name, ext) {
   if (TARGET !== 'dev') {
     const manifest = require(`../${COMPILED_ASSETS}/${config.assets.manifest}`);
 
-    return `${ASSETS_PATH}/${manifest[name][ext]}`;
+    return `/${manifest[name][ext]}`;
   }
 }
 

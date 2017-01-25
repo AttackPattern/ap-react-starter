@@ -1,13 +1,25 @@
-div {
-  background-color: '#000';
-  color: '#FFF';
-}
-#footer {
-  background-color: red;
+/*****
+* Below is an example of how to declare a font
+* all font files belong in /public/fonts
 
-  .image-test {
-    width: 50px;
-    height: 50px;
-    background-image: url('/public/icon-develop.svg');
-  }
+@font-face {
+  font-family: "MWF";
+  src: url("/fonts/MWFMDL2.woff") format("woff"),
+  url("/fonts/MWFMDL2.ttf") format("truetype");
 }
+*****/
+
+#footer {
+  background-color: yellow;
+}
+
+/*****
+* Below is an example of an image.
+* all images belong in /public/images
+
+.image-test {
+  width: 50px;
+  height: 50px;
+  background-image: url('/images/some.svg');
+}
+*****/
