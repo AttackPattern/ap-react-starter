@@ -33,8 +33,8 @@ const common = {
       test: /\.css$/,
       loader: "style-loader!css-loader"
     }, {
-      test: /\.(eot|ttf|woff|woff2)$/,
-      loader: 'file?name=public/fonts/[name].[ext]'
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'url'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
       loaders: [
@@ -94,7 +94,7 @@ if(TARGET === 'dev') {
     module: {
       loaders: [{
         test: /\.js.?$/,
-        include: ./app/,
+        include: /app/,
         loader: 'babel-loader',
       }, {
         test: /\.scss$/,
