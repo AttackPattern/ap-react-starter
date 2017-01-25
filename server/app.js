@@ -11,6 +11,7 @@ require('babel-register')({
 const express = require('express');
 const expressReactViews = require('express-react-views');
 const compression = require('compression');
+const config = require('../config/app.js');
 
 const http = require('http');
 http.globalAgent.maxSockets = 500;
@@ -28,11 +29,15 @@ app.engine('jsx', expressReactViews.createEngine({ transformViews: false }));
 
 require('./assets.js')(app);
 require('./routes')(app);
-app.locals.environment = 'production';
+app.locals.environment = process.env.npm_lifecycle_event === 'dev' ?
+  'development' : 'production';
 
 app.listen(8080, function() {
   /*eslint-disable */
-  console.log(`ap-react-gulp is now running`);
+  if (app.locals.environment === 'development') {
+    require('./webpack');
+  }
+  console.log(`ap-react is now running`);
   console.timeEnd('start time');
   /*eslint-enable */
 });

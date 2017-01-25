@@ -1,7 +1,10 @@
 const express = require('express');
 
-const COMPILED_ASSETS = 'public';
 
+const config = require('../config/app.js');
+const ASSETS_PATH = config.assets.path;
+const COMPILED_ASSETS = config.assets.compilePath;
+const TARGET = process.env.npm_lifecycle_event;
 /**
  * Generate the url for a static asset file.
  *
@@ -10,10 +13,10 @@ const COMPILED_ASSETS = 'public';
  * @return {string}
  */
 function asset(name, ext) {
-  if (process.env.NODE_ENV !== 'development') {
-    const manifest = require(`../${COMPILED_ASSETS}/asset-manifest.json`);
+  if (TARGET !== 'dev') {
+    const manifest = require(`../${COMPILED_ASSETS}/${config.assets.manifest}`);
 
-    return `/${manifest[name][ext]}`;
+    return `${ASSETS_PATH}/${manifest[name][ext]}`;
   }
 }
 
@@ -25,7 +28,14 @@ function asset(name, ext) {
  * @return {string}
  */
 function webpackAsset(name, ext) {
-  return asset(name, ext);
+  if (TARGET === 'dev') {
+    const host = config.webpack.host;
+    const port = config.webpack.port;
+
+    return `//${host}:${port}${ASSETS_PATH}/${name}.${ext}`;
+  } else {
+    return asset(name, ext);
+  }
 }
 
 module.exports = (app) => {
