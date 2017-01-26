@@ -3,7 +3,6 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpackConfig = require('../webpack.config');
 
 const config = require('../config/app.js');
-const WEBPACK_PORT = 8081;
 
 const server = new WebpackDevServer(webpack(webpackConfig), {
   compress: true,
@@ -20,7 +19,7 @@ const server = new WebpackDevServer(webpack(webpackConfig), {
   },
 });
 
-server.listen(WEBPACK_PORT, function() {
+server.listen(config.wepback.port, function() {
   /*eslint-disable */
   console.log(`Webpack: PORT=${config.webpack.port}`);
   /*eslint-enable */

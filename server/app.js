@@ -32,7 +32,7 @@ require('./routes')(app);
 app.locals.environment = process.env.npm_lifecycle_event === 'dev' ?
   'development' : 'production';
 
-app.listen(8080, function() {
+app.listen(config.app.port, function() {
   /*eslint-disable */
   if (app.locals.environment === 'development') {
     require('./webpack');

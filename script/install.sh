@@ -50,16 +50,8 @@ setupDependencies() {
 
 setupProject() {
     cd ${SOURCE}
-
-    if [[ ${NODE_ENV} == "production" ]]
-    then
-        npm install --quiet --production
-        npm run bundle
-    else
-        apk add tar
-        npm install --quiet -g webpack
-        npm install --quiet
-    fi
+    npm install --quiet -g webpack
+    npm install --quiet
 }
 
 clearInstallCache() {

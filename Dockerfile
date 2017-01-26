@@ -4,7 +4,7 @@ MAINTAINER Attack Pattern <hello@attackpattern.com>
 ENV SOURCE /src
 ENV NODE_PATH=$SOURCE
 ENV ASSETS_PATH=/public
-ENV APP_PORT=80
+ENV APP_PORT=8082
 
 EXPOSE $APP_PORT
 
@@ -16,4 +16,4 @@ RUN apk update && apk upgrade \
     && apk add bash-completion \
     && bash ${SOURCE}/script/install.sh
 
-CMD npm run-script dev
+CMD npm start
