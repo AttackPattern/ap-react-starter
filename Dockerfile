@@ -16,4 +16,4 @@ RUN apk update && apk upgrade \
     && apk add bash-completion \
     && bash ${SOURCE}/script/install.sh
 
-CMD npm start
+CMD npm run-script dev
