@@ -19,7 +19,7 @@ const server = new WebpackDevServer(webpack(webpackConfig), {
   },
 });
 
-server.listen(config.wepback.port, function() {
+server.listen(config.webpack.port, function() {
   /*eslint-disable */
   console.log(`Webpack: PORT=${config.webpack.port}`);
   /*eslint-enable */

@@ -18,6 +18,7 @@ require('./styles/main.scss');
 **/
 const preloadState = window.__PRELOADED_STATE__ || {};
 const store = createStore(appReducer, preloadState, applyMiddleware(thunk, fetch));
+console.log('store!');
 const App = (
   <Provider store={store}>
     <Router history={browserHistory} routes={routes} />

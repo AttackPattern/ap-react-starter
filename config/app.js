@@ -34,6 +34,6 @@ module.exports = Object.freeze({
   },
   webpack: {
     host: process.env.WEBPACK_HOST || 'localhost',
-    port: process.env.WEBPACK_PORT || '8081'
+    port: process.env.WEBPACK_PORT || '8083'
   }
 });

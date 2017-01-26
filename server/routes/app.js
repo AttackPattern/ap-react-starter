@@ -22,13 +22,13 @@ router.get('/*', (req, res) => {
   ReactRouter.match(location, (error, redirectLocation, renderProps) => {
     const content = React.createElement(ReactRouter.RouterContext, renderProps);
     switch(location.location){
-      case "/something":
+      case "/":
         getSomething()
         .then((somethingResponse) => {
           return somethingResponse.json();
         })
         .then((somethingJson) => {
-          const store = createStore(attackPatternApp, { careers: { data: somethingJson } });
+          const store = createStore(appReducer, { something: { data: somethingJson } });
           const hydratedContent = React.createElement(
             Provider,
             { store },
@@ -37,8 +37,14 @@ router.get('/*', (req, res) => {
           renderResponse(res, hydratedContent, store);
         })
         .catch((error) =>{
-          console.log('Yo, this is wack bro', error);
-          renderResponse(res, content);
+          console.log('Yo, this is wack bro, your endpoint is broke');
+          const store = createStore(appReducer, { something: { data:{} } });
+          const emptyStoreContent = React.createElement(
+            Provider,
+            { store },
+            content
+          );
+          renderResponse(res, emptyStoreContent , content);
         });
         break;
       default:
