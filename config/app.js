@@ -9,7 +9,7 @@
  */
 module.exports = Object.freeze({
   app: {
-    port: process.env.APP_PORT || '8082'
+    port: process.env.APP_PORT || '80'
   },
   assets: {
     path: process.env.ASSETS_PATH || '/public',
