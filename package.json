@@ -4,7 +4,7 @@
   "author": "metroninja",
   "private": false,
   "engines": {
-    "node": ">=6.9.1"
+    "node": "6.9.1"
   },
   "dependencies": {
     "app-module-path": "2.2.0",
@@ -49,7 +49,7 @@
     "webpack-dev-server": "1.16.2"
   },
   "scripts": {
-    "start": "webpack --progress --colors; node server/app.js",
+    "start": "npm install -g webpack;webpack --progress --colors; node server/app.js",
     "dev": "node server/app.js"
 
   }
