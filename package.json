@@ -49,7 +49,7 @@
     "webpack-dev-server": "1.16.2"
   },
   "scripts": {
-    "start": "npm install -g webpack;webpack --progress --colors; node server/app.js",
+    "start": "npm install -g webpack&webpack --progress --colors& node server/app.js",
     "dev": "node server/app.js"
 
   }
