@@ -76,7 +76,7 @@ After that's created, click into the created app service from the dashboard or u
   * Select `Deployment Options` under App Deploy in the long list of options.
   * Select `Github` from your choose Source, authorize and select the source.  You should likely be setting to whatever your repo is, or the fork of this one.  Then hit `Ok` at the bottom.
 
-That should be it!  if you haven't broken the deployment, or azure hasn't changed too much this should all work.
+That should be it!  if you haven't broken the deployment, or azure hasn't changed too much this should all work.  you can find the url of your container from the overview page of the App Service container.
 
 To configure
 ##TODO
