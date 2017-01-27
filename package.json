@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "author": "metroninja",
   "private": false,
+  "main": "server/app.js",
   "engines": {
     "node": "6.9.1"
   },
@@ -49,7 +50,7 @@
     "webpack-dev-server": "1.16.2"
   },
   "scripts": {
-    "webpack":"node_modules/.bin/webpack",
+    "webpack": "node_modules/.bin/webpack",
     "start": "node server/app.js",
     "dev": "node server/app.js"
 
