@@ -9,7 +9,7 @@
  */
 module.exports = Object.freeze({
   app: {
-    port: process.env.APP_PORT || '8082'
+    port: process.env.APP_PORT || '8080'
   },
   assets: {
     path: process.env.ASSETS_PATH || '/public',
@@ -34,6 +34,6 @@ module.exports = Object.freeze({
   },
   webpack: {
     host: process.env.WEBPACK_HOST || 'localhost',
-    port: process.env.WEBPACK_PORT || '8083'
+    port: process.env.WEBPACK_PORT || '8081'
   }
 });
