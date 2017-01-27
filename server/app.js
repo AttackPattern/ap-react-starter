@@ -19,18 +19,22 @@ http.globalAgent.maxSockets = 500;
 var app;
 module.exports = app = express();
 
+app.locals.environment = process.env.npm_lifecycle_event === 'dev' ?
+  'development' : 'production';
+
 app.enable('trust proxy');
 app.disable('x-powered-by');
 
 app.use(compression());
-app.set('views', path.join(`${process.cwd()}`, '..', 'app'));
+
+app.locals.environment === 'production' ?
+  app.set('views', path.join(`${process.cwd()}`, '..', 'app')) :
+  app.set('views', path.join(`${process.cwd()}`, 'app'));
 app.set('view engine', 'jsx');
 app.engine('jsx', expressReactViews.createEngine({ transformViews: false }));
 
 require('./assets.js')(app);
 require('./routes')(app);
-app.locals.environment = process.env.npm_lifecycle_event === 'dev' ?
-  'development' : 'production';
 const port = process.env.PORT || config.app.port;
 app.listen(port, function() {
   /*eslint-disable */

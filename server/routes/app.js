@@ -55,6 +55,7 @@ router.get('/*', (req, res) => {
 });
 
 const renderResponse = (res, content, store = {}) => {
+  console.log(process.env);
   res.render('server', {
     markup: {
       app: renderToString(content),
