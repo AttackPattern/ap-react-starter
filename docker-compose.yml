@@ -1,6 +1,8 @@
 web:
   build: .
   container_name: ap-react
+  environment:
+    - PORT=8080
   expose:
     - "8080"
   ports:
