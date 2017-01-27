@@ -26,8 +26,8 @@ app.enable('trust proxy');
 app.disable('x-powered-by');
 
 app.use(compression());
-
-app.locals.environment === 'production' ?
+//pathing needs to be different if we are on azure
+process.env.hasOwnProperty('OS') && process.env.OS === 'Windows_NT' ?
   app.set('views', path.join(`${process.cwd()}`, '..', 'app')) :
   app.set('views', path.join(`${process.cwd()}`, 'app'));
 app.set('view engine', 'jsx');
