@@ -2,10 +2,10 @@ web:
   build: .
   container_name: ap-react
   expose:
-    - "8082"
+    - "8080"
   ports:
-    - "8082:8082"
-    - "8083:8083"
+    - "8080:8080"
+    - "8081:8081"
   volumes:
     - .:/src
     - /src/node_modules
