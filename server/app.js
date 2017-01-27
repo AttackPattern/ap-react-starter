@@ -23,7 +23,7 @@ app.enable('trust proxy');
 app.disable('x-powered-by');
 
 app.use(compression());
-app.set('views', '/app');
+app.set('views', `${process.cwd()}` + '..\\..\\app');
 app.set('view engine', 'jsx');
 app.engine('jsx', expressReactViews.createEngine({ transformViews: false }));
 
