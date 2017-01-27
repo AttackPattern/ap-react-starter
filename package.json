@@ -51,7 +51,7 @@
   },
   "scripts": {
     "webpack": "node_modules/.bin/webpack",
-    "start": "node server\app.js",
+    "start": "node server/app.js",
     "dev": "node server/app.js"
 
   }
