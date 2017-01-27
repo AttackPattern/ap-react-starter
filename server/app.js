@@ -12,7 +12,7 @@ const express = require('express');
 const expressReactViews = require('express-react-views');
 const compression = require('compression');
 const config = require('../config/app.js');
-
+const path = require('path');
 const http = require('http');
 http.globalAgent.maxSockets = 500;
 
