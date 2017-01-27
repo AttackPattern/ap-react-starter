@@ -31,8 +31,8 @@ require('./assets.js')(app);
 require('./routes')(app);
 app.locals.environment = process.env.npm_lifecycle_event === 'dev' ?
   'development' : 'production';
-
-app.listen(config.app.port, function() {
+const port = process.env.PORT || config.app.port;
+app.listen(port, function() {
   /*eslint-disable */
   if (app.locals.environment === 'development') {
     require('./webpack');
