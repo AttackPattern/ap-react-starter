@@ -34,17 +34,17 @@ router.get('/*', (req, res) => {
             { store },
             content
           );
-          renderResponse(res, hydratedContent, store);
+          renderResponse(res, hydratedContent, store.getState());
         })
         .catch((error) =>{
           console.log('Yo, this is wack bro, your endpoint is broke');
-          const store = createStore(appReducer, { something: { data:{} } });
+          const store = createStore(appReducer, { something: { data:['a'] } });
           const emptyStoreContent = React.createElement(
             Provider,
             { store },
             content
           );
-          renderResponse(res, emptyStoreContent , content);
+          renderResponse(res, emptyStoreContent , store.getState());
         });
         break;
       default:
