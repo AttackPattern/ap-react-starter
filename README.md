@@ -25,7 +25,7 @@ How to run
 First clone the repo - if you copy it elsewhere make SURE the **.babelrc** file comes along, it's critical.  From there you have 2 path's.  If you want to run it locally, from the root of the repo in a command prompt run the following
 * Development (hot reloading)
   * for docker run `docker-compose build` followed by `docker-compose up`
-  * to run locally simply run `npm run-script dev` - *note this assumes you have node 6.9.3 installed, if it's not or you have 7 I'd highly reccomend installing [nvm](https://github.com/creationix/nvm)
+  * to run locally first run `npm install` followed by `npm run-script dev` upon successful npm install - *note this assumes you have node 6.9.3 installed, if it's not or you have 7 I'd highly reccomend installing [nvm](https://github.com/creationix/nvm)
 * Production
   * The docker file is setup to run on port 3000 so simply build and start the docker container
   * for Azure see below as it's a bit more involved.
