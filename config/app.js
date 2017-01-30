@@ -3,7 +3,9 @@
  * These will be directly available to server-side code.
  * Where you need a key in client-side code, also add to webpack.config.js
  *
- * Note: keys are in alphabetical order.
+ * NOTE: keys are in alphabetical order.
+ *
+ * NOTE: using Object.freeze to enforce `constants` in config hash
  *
  * @type {Object}
  */
@@ -16,11 +18,6 @@ module.exports = Object.freeze({
     compilePath: 'public',
     entryScript : 'app/client.jsx',
     manifest: 'asset-manifest.json'
-  },
-  cms: {
-    json: process.env.CMS_JSON || 'http://cms.attackpattern.com/json/',
-    media: process.env.CMS_MEDIA || 'http://cms.attackpattern.com/files/',
-    thumbs: process.env.CMS_THUMBS || 'http://cms.attackpattern.com/thumbs/',
   },
   locale: {
     code: 'en-US',

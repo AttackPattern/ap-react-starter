@@ -26,6 +26,9 @@ runInstall() {
     clearInstallCache
 }
 
+###
+# NOTE: this installs most of the basic Node.js dependencies for `node-gyp` builds and other useful utilities
+###
 setupDependencies() {
     apk add \
         binutils-gold \
@@ -48,12 +51,20 @@ setupDependencies() {
         zlib-dev
 }
 
+###
+# NOTE: this installs any globals specified and all project dependencies
+###
 setupProject() {
     cd ${SOURCE}
     npm install --quiet -g webpack
     npm install --quiet
 }
 
+###
+# NOTE: optionally removes some production dependencies but may need to be tweaked depending on the dependency
+#
+# NOTE: also removing unnecessary Node.js documentation and other cached data
+###
 clearInstallCache() {
     if [[ ${NODE_ENV} == "production" ]]
     then
@@ -89,4 +100,5 @@ clearInstallCache() {
         /var/cache/apk/*
 }
 
+# runs the main install function
 runInstall
