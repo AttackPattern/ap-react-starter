@@ -29,7 +29,7 @@ First clone the repo - if you copy it elsewhere make SURE the **.babelrc** file 
 * Production
   * The docker file is setup to run on port 3000 so simply build and start the docker container
   * for Azure see below as it's a bit more involved.
-  * to run from any old vm (that has node 6.9.1 installed) run from the root directory
+  * to run from any old vm (that has node 6.9.3 installed) run from the root directory
     * `npm install`
     * `npm install -g webpack`
     * `webpack`
