@@ -14,9 +14,21 @@ const TARGET = process.env.npm_lifecycle_event;
 const WEBPACK_DEV_URL = `http://${config.webpack.host}:${config.webpack.port}`;
 
 const sassLoaders = [
-  'css-loader',
-  'postcss-loader',
-  `sass-loader?sourceMap`,
+  { loader: 'css-loader' },
+  {
+    loader: 'postcss-loader',
+    options: {
+      plugins: () => {
+        return [autoprefixer(browsersListConfig)]
+      }
+    }
+  },
+  {
+    loader: 'sass-loader',
+    options: {
+      sourceMap: true,
+    }
+  },
 ];
 
 const browsersListConfig = {
@@ -29,46 +41,71 @@ const common = {
     main: "app/client.jsx",
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.css$/,
-      loader: "style-loader!css-loader"
-    }, {
+      use: ["style-loader", "css-loader"],
+      }, {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
-      loader: 'file?name=/fonts/[name].[ext]'
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '/fonts/[name].[ext]',
+          },
+        }
+      ]
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
-      loaders: [
-        'file?name=/images/[name].[ext]'
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '/images/[name].[ext]',
+          }
+        }
       ]
     }],
   },
-  postcss: [
-    autoprefixer(browsersListConfig),
-  ],
-  progress: true,
-  resolve: {
-    root: [
+  resolve : {
+    modules: [
       process.cwd(),
+      "node_modules"
     ],
+    extension: ['.js', '.jsx'],
   },
 };
 if(TARGET === 'dev') {
   module.exports = merge.smart(common, {
     cache: true,
-    devTool: 'inline-source-map',
-    entry: [
+    devtool: 'inline-source-map',
+    entry: {
+      app: [
+      'react-hot-loader/patch',
       `webpack-dev-server/client?${WEBPACK_DEV_URL}`,
       'webpack/hot/only-dev-server',
+      'babel-polyfill',
       config.assets.entryScript,
-    ],
+      ],
+    },
+    target: 'node',
     module: {
-      loaders: [{
+      rules: [{
         test: /\.js.?$/,
-        include: /app/,
-        loaders: ['babel-loader'],
+        exclude: /node_modules/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            "presets": [
+              ["env", {
+                "modules": true,
+              }]
+            ],
+            "plugins": ["react-hot-loader/babel", "transform-decorators-legacy"]
+          }
+        }],
       }, {
         test: /\.scss$/,
-        loader: `style-loader!${sassLoaders.join('!')}`,
+        use: sassLoaders,
       }],
 
     },
@@ -79,7 +116,7 @@ if(TARGET === 'dev') {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify('development'),
@@ -90,15 +127,14 @@ if(TARGET === 'dev') {
 } else {
   module.exports = merge.smart(common, {
     entry: ['babel-polyfill', config.assets.entryScript],
-    devTool: 'source-map',
     module: {
-      loaders: [{
+      rules: [{
         test: /\.js.?$/,
         include: /app/,
-        loader: 'babel-loader',
+        use: ['babel-loader'],
       }, {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!')),
+        use:[{loader: 'style-loader'}].concat(sassLoaders),
       }],
     },
     output: {
@@ -111,16 +147,15 @@ if(TARGET === 'dev') {
         path: 'public',
         prettyPrint: true,
       }),
-      new ExtractTextPlugin('[name]-[hash].css'),
+      new ExtractTextPlugin({
+        filename: '[name]-[hash].css',
+      }),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify('production'),
         },
       }),
       new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false,
-        },
         mangle: false,
       }),
     ],
