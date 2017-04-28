@@ -42,6 +42,11 @@ const common = {
   },
   module: {
     rules: [{
+      test: /\.js.?$/,
+      include: /app/,
+      use: 'babel-loader',
+
+    }, {
       test: /\.css$/,
       use: ["style-loader", "css-loader"],
       }, {
@@ -71,7 +76,6 @@ const common = {
       process.cwd(),
       "node_modules"
     ],
-    extension: ['.js', '.jsx'],
   },
 };
 if(TARGET === 'dev') {
@@ -80,30 +84,13 @@ if(TARGET === 'dev') {
     devtool: 'inline-source-map',
     entry: {
       app: [
-      'react-hot-loader/patch',
       `webpack-dev-server/client?${WEBPACK_DEV_URL}`,
       'webpack/hot/only-dev-server',
-      'babel-polyfill',
       config.assets.entryScript,
       ],
     },
-    target: 'node',
     module: {
       rules: [{
-        test: /\.js.?$/,
-        exclude: /node_modules/,
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            "presets": [
-              ["env", {
-                "modules": true,
-              }]
-            ],
-            "plugins": ["react-hot-loader/babel", "transform-decorators-legacy"]
-          }
-        }],
-      }, {
         test: /\.scss$/,
         use: sassLoaders,
       }],
@@ -129,10 +116,6 @@ if(TARGET === 'dev') {
     entry: ['babel-polyfill', config.assets.entryScript],
     module: {
       rules: [{
-        test: /\.js.?$/,
-        include: /app/,
-        use: ['babel-loader'],
-      }, {
         test: /\.scss$/,
         use:[{loader: 'style-loader'}].concat(sassLoaders),
       }],

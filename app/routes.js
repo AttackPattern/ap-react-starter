@@ -1,17 +1,12 @@
-import AppRoot from './components/AppRoot.jsx';
-import SomePage from './components/something/index.jsx';
-import NotFound from './components/NotFound/index.jsx';
+import HomePage from './components/Homepage/index.jsx';
+import SubPage from './components/SubPage/index.jsx';
 
-export default [{
-  component: AppRoot,
-  path: '/',
-  indexRoute: { component: SomePage },
-  childRoutes: [/*{
-    component: ComponentName,
-    path: '/path-you-wanted' ,
-  },*/{
-    component: NotFound,
-    path: '*',
-    status: 404,
-  }],
-}];
+export default [
+  {
+    path: '/',
+    component: HomePage,
+  }, {
+    path: '/child',
+    component: SubPage,
+  },
+];

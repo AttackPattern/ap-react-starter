@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
+import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { useRouterHistory, Router, browserHistory } from 'react-router';
 import fetch from './middleware/fetch';
 
 import appReducer from './reducers/something'
-import routes from './routes.js';
+import AppRoot from 'app/components/AppRoot.jsx';
 require('./styles/main.scss');
+
 
 /**
 * so when the app is delivered to the client, the client.jsx (transpiled to client.js)
@@ -18,11 +19,11 @@ require('./styles/main.scss');
 **/
 const preloadState = window.__PRELOADED_STATE__ || {};
 const store = createStore(appReducer, preloadState, applyMiddleware(thunk, fetch));
-console.log('store!');
 const App = (
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes} />
+    <BrowserRouter>
+      <AppRoot />
+    </BrowserRouter>
   </Provider>
 );
-
-ReactDOM.render(App, document.getElementById('main'));
+render(App, document.getElementById('main'));

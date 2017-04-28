@@ -6,10 +6,10 @@ const config = require('../config/app.js');
 
 const server = new WebpackDevServer(webpack(webpackConfig), {
   compress: true,
+  host: "0.0.0.0",
   headers: {
     'Access-Control-Allow-Origin': '*',
   },
-  host: '0.0.0.0',
   hot: true,
   noInfo: false,
   publicPath: webpackConfig.output.publicPath,
