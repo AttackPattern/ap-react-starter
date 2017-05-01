@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-const ServerLayout = ({assets, environment, markup}) => {
+const ServerLayout = ({assets, environment, markup, stores}) => {
   return (
     <html>
       <head>
@@ -15,9 +16,9 @@ const ServerLayout = ({assets, environment, markup}) => {
       </head>
       <body>
         <div id="main" >
-          <div dangerouslySetInnerHTML={{ __html: markup.app }} />
+          <div dangerouslySetInnerHTML={{ __html: markup }} />
         </div>
-        <script dangerouslySetInnerHTML={{ __html: `window.__PRELOADED_STATE__ = ${JSON.stringify(markup.stores)};` }} />
+        <script dangerouslySetInnerHTML={{ __html: `window.__PRELOADED_STATE__ = ${JSON.stringify(stores)};` }} />
         <script src={assets.scripts.main}></script>
       </body>
 
@@ -27,7 +28,7 @@ const ServerLayout = ({assets, environment, markup}) => {
 ServerLayout.propTypes = {
   assets: PropTypes.object.isRequired,
   environment: PropTypes.string.isRequired,
-  markup: PropTypes.object.isRequired
+  markup: PropTypes.string.isRequired,
 };
 
 export default ServerLayout;

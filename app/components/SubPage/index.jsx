@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react';
+import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -16,12 +16,12 @@ import { fetchSomething } from "../../actions/something"
   dispatch => bindActionCreators({
     fetchSomething }, dispatch)
 )
-export default class Something extends Component {
+export default class SubPage extends Component {
 
   render() {
     return (
       <div>
-        Hey, here is a bunch of content
+        Welcome to a child page
       </div>
     )
   }

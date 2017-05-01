@@ -1,7 +1,7 @@
 module.exports = (app) => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (app.locals.environment !== 'production') {
     app.use((req, res, next) => {
-      res.header('X-Environment', process.env.NODE_ENV);
+      res.header('X-Environment', app.locals.environment);
       return next();
     });
   }

@@ -1,4 +1,4 @@
-FROM node:6-alpine
+FROM node:7
 MAINTAINER Attack Pattern <hello@attackpattern.com>
 
 ENV SOURCE /src
@@ -8,12 +8,9 @@ ENV APP_PORT=3000
 
 EXPOSE $APP_PORT
 
-
+RUN npm install -g webpack --silent
 WORKDIR $SOURCE
 ADD . $SOURCE
 
-RUN apk update && apk upgrade \
-    && apk add bash-completion \
-    && bash ${SOURCE}/script/install.sh
-
-CMD npm start
+RUN npm install --silent
+CMD npm run prod
