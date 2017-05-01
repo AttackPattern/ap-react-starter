@@ -1,7 +1,7 @@
 ![react 15.5](https://img.shields.io/badge/react-15.5-blue.svg?style=flat)
 ![webpack 2](https://img.shields.io/badge/webpack-2-blue.svg?style=flat)
 ![react-router 4](https://img.shields.io/badge/react--router-4-blue.svg?style=flat)
-![Node 7](https://img.shields.io/badge/universal--node-7-blue.svg?style=flat)
+![Node 7](https://img.shields.io/badge/node-7-blue.svg?style=flat)
 ![Universal Javascript](https://img.shields.io/badge/universal--javascript-yes-brightgreen.svg?style=flat)
 
 ![Open Source](https://img.shields.io/badge/open_source-yes-brightgreen.svg?style=flat)
