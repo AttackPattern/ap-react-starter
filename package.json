@@ -38,6 +38,7 @@
     "prop-types": "15.5.8",
     "react": "15.5.4",
     "react-dom": "15.5.4",
+    "react-hot-loader": "3.0.0-beta.6",
     "react-redux": "5.0.4",
     "react-router": "4.1.1",
     "react-router-dom": "4.1.1",
@@ -46,16 +47,15 @@
     "sass-loader": "6.0.3",
     "style-loader": "0.16.1",
     "url-loader": "0.5.8",
-    "webpack": "2.4.1",
-    "webpack-merge": "4.1.0"
+    "webpack": "2.4.1"
   },
   "devDependencies": {
-    "react-hot-loader": "3.0.0-beta.6",
     "webpack-dev-server": "2.4.4"
   },
   "scripts": {
     "webpack": "node_modules/.bin/webpack",
     "start": "node server/app.js",
+    "prod": "webpack && node server/app.js",
     "dev": "node server/app.js"
   }
 }

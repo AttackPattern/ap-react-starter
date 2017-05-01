@@ -7,7 +7,6 @@ import { createStore } from 'redux';
 import { StaticRouter as Router } from 'react-router';
 import { getSomething } from '../../app/sources/something';
 import appReducer from '../../app/reducers/something';
-
 import AppRoot from '../../app/components/AppRoot.jsx';
 global.fetch = require('node-fetch');
 
@@ -59,10 +58,7 @@ router.get('/*', (req, res) => {
 
 const renderResponse = (res, content, store = {}) => {
   res.render('server', {
-    markup: {
-      app: renderToString(content),
-      environment: process.env.NODE_ENV,
-      stores: store,
-    }
+    markup: renderToString(content),
+    stores: store,
   });
 }

@@ -13,5 +13,4 @@ WORKDIR $SOURCE
 ADD . $SOURCE
 
 RUN npm install --silent
-
-CMD npm start
+CMD npm run prod

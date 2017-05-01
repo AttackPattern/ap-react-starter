@@ -1,39 +1,45 @@
+![react 15.5](https://img.shields.io/badge/react-15.5-blue.svg?style=flat)
+![webpack 2](https://img.shields.io/badge/webpack-2-blue.svg?style=flat)
+![react-router 4](https://img.shields.io/badge/react--router-4-blue.svg?style=flat)
+![Node 7](https://img.shields.io/badge/universal--node-7-blue.svg?style=flat)
+![Universal Javascript](https://img.shields.io/badge/universal--javascript-yes-brightgreen.svg?style=flat)
+
+![Open Source](https://img.shields.io/badge/open_source-yes-brightgreen.svg?style=flat)
+
 Attack Pattern React baseline
 ===
-#### **yarbr**  
-Pronounced /yharbur/  
-*noun*  
-*Definition* -  yet another react bootstrap repo
-
-This is the attack pattern baseline repo for our web apps.  There isn't a whole lot to differentiate this from other starter kits except that this is setup to run on docker or azure.
+This is the attack pattern baseline repo for our web apps.  There was some difficulty in finding solid start repos using latest react with React 15.5, Webpack2, React Router 4 and server side rendering. this repo is setup to run on docker or azure.
 ____
 
 Core Technologies
 ---
-* react
-* react-router
+* react 15.5
+* react-router 4
 * redux
 * SASS
-* Express w/ server side rendering
-* webpack
+* Express w/ server side rendering (or if your cool, universal javascript app)
+* webpack 2
   * webpack hot reloading
 * babel w/ es6/es7 features
-* docker using alpine linux
+* docker
+* node 7 (should work fine on 6 LTS though)
 
 How to run
 ---
 First clone the repo - if you copy it elsewhere make SURE the **.babelrc** file comes along, it's critical.  From there you have 2 path's.  If you want to run it locally, from the root of the repo in a command prompt run the following
 * Development (hot reloading)
   * for docker run `docker-compose build` followed by `docker-compose up`
-  * to run locally first run `npm install` followed by `npm run-script dev` upon successful npm install - *note this assumes you have node 6.9.4 installed, if it's not or you have 7 I'd highly reccomend installing [nvm](https://github.com/creationix/nvm)
+  * to run locally first run `npm install` followed by `npm run-script dev` upon successful npm install - *note this assumes you have node 7 installed, if it's not I'd highly reccomend installing [nvm](https://github.com/creationix/nvm)
 * Production
   * The docker file is setup to run on port 3000 so simply build and start the docker container
   * for Azure see below as it's a bit more involved.
-  * to run from any old vm (that has node 6.9.4 installed) run from the root directory
+  * to run from any old vm (that has node 7 installed) run from the root directory
     * `npm install`
     * `npm install -g webpack`
     * `webpack`
     * `npm start`
+
+Please note that if you try to test your production config locally in docker by say changing the docker-compose run command from `npm run dev` to `npm start` the server will fail to start if you haven't run webpack to generate the asset files.
 
 How to Edit
 ---
