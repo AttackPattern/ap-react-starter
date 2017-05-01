@@ -37,9 +37,9 @@ First clone the repo - if you copy it elsewhere make SURE the **.babelrc** file 
     * `npm install`
     * `npm install -g webpack`
     * `webpack`
-    * `npm start`
+    * `npm run prod`
 
-Please note that if you try to test your production config locally in docker by say changing the docker-compose run command from `npm run dev` to `npm start` the server will fail to start if you haven't run webpack to generate the asset files.
+Please note that if you try to test your production config locally in docker by say changing the docker-compose run command from `npm run dev` to `npm start` the server will fail to start if you haven't run webpack to generate the asset files.  This is the purpose of the `npm run prod` over `npm start`.  Now why not just have the prod config in npm start?  well Azure by default just runs your `npm start` script and it doesn't like && in a command (as of this writing).  So we leave `npm start` for azure since we can easily edit our Dockerfile to finalize with a `npm run prod`
 
 How to Edit
 ---
