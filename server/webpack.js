@@ -11,16 +11,17 @@ const server = new WebpackDevServer(webpack(webpackConfig), {
     'Access-Control-Allow-Origin': '*',
   },
   hot: true,
-  noInfo: false,
   publicPath: webpackConfig.output.publicPath,
-  quiet: false,
   stats: {
     colors: true,
   },
 });
 
-server.listen(config.webpack.port, function() {
+server.listen(config.webpack.port, function(err, result) {
   /*eslint-disable */
-  console.log(`Webpack: PORT=${config.webpack.port}`);
+  if(err) {
+    console.log(`webpack Dev Server error ${err}`);
+  }
+  console.log(`Webpack Dev Server: PORT=${config.webpack.port}`);
   /*eslint-enable */
 });

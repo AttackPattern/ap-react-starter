@@ -12,6 +12,6 @@ RUN npm install -g webpack --silent
 WORKDIR $SOURCE
 ADD . $SOURCE
 
-RUN npm install
+RUN npm install --silent
 
 CMD npm start

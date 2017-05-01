@@ -14,6 +14,7 @@ const TARGET = process.env.npm_lifecycle_event;
 const WEBPACK_DEV_URL = `http://${config.webpack.host}:${config.webpack.port}`;
 
 const sassLoaders = [
+  { loader: 'style-loader' },
   { loader: 'css-loader' },
   {
     loader: 'postcss-loader',
@@ -82,19 +83,17 @@ if(TARGET === 'dev') {
   module.exports = merge.smart(common, {
     cache: true,
     devtool: 'inline-source-map',
-    entry: {
-      app: [
+    entry: [
+      'react-hot-loader/patch',
       `webpack-dev-server/client?${WEBPACK_DEV_URL}`,
       'webpack/hot/only-dev-server',
       config.assets.entryScript,
-      ],
-    },
+    ],
     module: {
       rules: [{
         test: /\.scss$/,
         use: sassLoaders,
       }],
-
     },
     output: {
       filename: '[name].js',
@@ -103,6 +102,7 @@ if(TARGET === 'dev') {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
       new webpack.DefinePlugin({
         'process.env': {
@@ -117,12 +117,16 @@ if(TARGET === 'dev') {
     module: {
       rules: [{
         test: /\.scss$/,
-        use:[{loader: 'style-loader'}].concat(sassLoaders),
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: sassLoaders,
+        })
       }],
     },
     output: {
       filename: '[name]-[hash].js',
       path: config.assets.compilePath,
+      publicPath: config.assets.compilePath,
     },
     plugins: [
       new AssetsPlugin({

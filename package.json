@@ -51,8 +51,7 @@
   },
   "devDependencies": {
     "react-hot-loader": "3.0.0-beta.6",
-    "webpack-dev-server": "2.4.4",
-    "webpack-dev-middleware": "1.10.2"
+    "webpack-dev-server": "2.4.4"
   },
   "scripts": {
     "webpack": "node_modules/.bin/webpack",

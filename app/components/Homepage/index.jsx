@@ -3,11 +3,20 @@ import  PropTypes from 'prop-types';
 
 export default class Homepage extends Component {
 
+  static propTypes = {
+    match: PropTypes.object,
+  }
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <div>
+      <section id="homepage">
         Welcome to the homepage
-      </div>
+
+      </section>
     )
   }
 }
