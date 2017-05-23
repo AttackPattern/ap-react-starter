@@ -9,7 +9,7 @@ export default class AppRoot extends Component {
 
   RenderSubRoute(route, index) {
     return (
-      <Route key={index} path={route.path} render={props => (
+      <Route key={index} exact={route.exact} path={route.path} render={props => (
         // pass the sub-routes down to keep nesting
         <route.component {...props} routes={route.routes}/>
       )}/>

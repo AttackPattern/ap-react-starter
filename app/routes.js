@@ -5,6 +5,7 @@ export default [
   {
     path: '/',
     component: HomePage,
+    exact: true,
   }, {
     path: '/child',
     component: SubPage,

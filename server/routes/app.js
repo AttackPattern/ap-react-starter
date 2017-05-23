@@ -51,7 +51,7 @@ router.get('/*', (req, res) => {
       });
       break;
     default:
-    renderResponse(res, content);
+      renderResponse(res, content);
       break;
   }
 });

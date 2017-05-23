@@ -5,7 +5,7 @@
   "private": false,
   "main": "server/app.js",
   "engines": {
-    "node": "6.10.2"
+    "node": "7"
   },
   "dependencies": {
     "app-module-path": "2.2.0",

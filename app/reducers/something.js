@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { SOMETHING_REQUEST, SOMETHING_SUCCESS, SOMETHING_FAILURE } from '../actions/something';
+import * as Actions from '../actions/something';
 
 //define the shape of the store object
 const initialState = {
@@ -15,14 +15,14 @@ const something = (state = initialState, action) => {
     * notice we are using spread on the existing state, this is because you shouldn't
     * mutate the actual state object, so we return a shallow copy
     **/
-    case SOMETHING_REQUEST:
+    case Actions.SOMETHING_REQUEST:
       return {
         ...state,
         isLoading: true,
         error: false,
       }
       break;
-    case SOMETHING_SUCCESS:
+    case Actions.SOMETHING_SUCCESS:
       console.log('success', action);
       return {
         ...state,
@@ -30,7 +30,7 @@ const something = (state = initialState, action) => {
         isLoading: false,
       }
       break;
-    case SOMETHING_FAILURE:
+    case Actions.SOMETHING_FAILURE:
         return {
           ...state,
           isLoading: false,
