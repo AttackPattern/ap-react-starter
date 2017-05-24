@@ -16,7 +16,7 @@ module.exports = router = express.Router();
 router.get('/*', (req, res) => {
   //put the boostrap data from your middleware boostrap object into your stores
   const content = (
-    <Router context={{}} locaton={req.url}>
+    <Router context={{}} location={req.url}>
       <AppRoot />
     </Router>
   );
