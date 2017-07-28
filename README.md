@@ -1,39 +1,39 @@
-![react 15.5](https://img.shields.io/badge/react-15.5-blue.svg?style=flat)
+![react 15.6](https://img.shields.io/badge/react-15.6-blue.svg?style=flat)
 ![webpack 2](https://img.shields.io/badge/webpack-2-blue.svg?style=flat)
 ![react-router 4](https://img.shields.io/badge/react--router-4-blue.svg?style=flat)
-![Node 7](https://img.shields.io/badge/node-7-blue.svg?style=flat)
+![Node 8](https://img.shields.io/badge/node-8-blue.svg?style=flat)
 ![Universal Javascript](https://img.shields.io/badge/universal--javascript-yes-brightgreen.svg?style=flat)
 
 ![Open Source](https://img.shields.io/badge/open_source-yes-brightgreen.svg?style=flat)
 
 Attack Pattern React baseline
 ===
-This is the attack pattern baseline repo for our web apps.  There was some difficulty in finding solid start repos using latest react with React 15.5, Webpack2, React Router 4 and server side rendering. this repo is setup to run on docker or azure.
+This is the attack pattern baseline repo for our web apps.  There was some difficulty in finding solid start repos using latest react with React 15.6, Webpack2, React Router 4 and server side rendering. this repo is setup to run on docker or azure.
 ____
 
 Core Technologies
 ---
-* react 15.5
+* react 15.6
 * react-router 4
 * redux
 * SASS
-* Express w/ server side rendering (or if your cool, universal javascript app)
+* Express w/ server side rendering (or if you're cool, universal javascript app)
 * webpack 2
   * webpack hot reloading
 * babel w/ es6/es7 features
 * docker
-* node 7 (should work fine on 6 LTS though)
+* node 8 (should work fine on 6 LTS though)
 
 How to run
 ---
-First clone the repo - if you copy it elsewhere make SURE the **.babelrc** file comes along, it's critical.  From there you have 2 path's.  If you want to run it locally, from the root of the repo in a command prompt run the following
+First clone the repo - if you copy it elsewhere make SURE the **.babelrc** file comes along, it's critical. From there you have 2 paths. If you want to run it locally, from the root of the repo in a command prompt run the following:
 * Development (hot reloading)
-  * for docker run `docker-compose build` followed by `docker-compose up`
-  * to run locally first run `npm install` followed by `npm run-script dev` upon successful npm install - *note this assumes you have node 7 installed, if it's not I'd highly reccomend installing [nvm](https://github.com/creationix/nvm)
+  * For docker run `docker-compose build` followed by `docker-compose up`
+  * To run locally first run `npm install` followed by `npm run-script dev` upon successful npm install - *note this assumes you have node 8 installed, if it's not I'd highly reccomend installing [nvm](https://github.com/creationix/nvm)
 * Production
   * The docker file is setup to run on port 3000 so simply build and start the docker container
-  * for Azure see below as it's a bit more involved.
-  * to run from any old vm (that has node 7 installed) run from the root directory
+  * For Azure see below as it's a bit more involved.
+  * To run from any old vm (that has node 8 installed) run from the root directory
     * `npm install`
     * `npm install -g webpack`
     * `webpack`
@@ -44,7 +44,7 @@ Please note that if you try to test your production config locally in docker by 
 How to Edit
 ---
 ### Index file
-The index file is sitting in `app/server.jsx`.  if you need to edit meta data this is the place to do it.  The core of the app is in
+The index file is sitting in `app/server.jsx`.  if you need to edit meta data this is the place to do it.  The core of the app is in:
 ```
 <div id="main" >
   <div dangerouslySetInnerHTML={{ __html: markup.app }} />
@@ -69,14 +69,14 @@ Since deploying to azure took a lot of work to figure out I'm going to document 
   * a `deployment.cmd` file in the root.  This tells azure what to do after a deployment request happens (like say a checkin to github).  This file is generated using the `azure-cli` npm package but I just stole mine from a different example repo.  The only line that's added is the one that runs webpack after the npm install.
   * for Debuging ONLY the `IISNode.yml` file.  you will either want to delete this on your production branch or set both values to false for prod.  Having this enabled sends your console output (for the server side calls) to the Log Stream in the azure portal.
 
-The only other thing worth mentioning that caused a ton of headaches is pathing in azure.  for import/require statements webpack bundles all of the js together so there is no issues, but for things like file pathing in express you need to remember that windows and linux consoles use different slashes.  take a look at `server/app.js` line 30-32.  you need to use path.join to ensure the paths that come out are properly formatted for the platform node is running on or risk file not found problems  (use the IISNode.yml to debug).  since I have the root jsx file in the `app` folder, and process.cwd() returns different paths on dev/linux versus windows I am checking the environment and setting the view path differently.
+The only other thing worth mentioning that caused a ton of headaches is pathing in azure. For import/require statements webpack bundles all of the js together so there is no issues, but for things like file pathing in express you need to remember that windows and linux consoles use different slashes. Take a look at `server/app.js` line 30-32. You need to use path.join to ensure the paths that come out are properly formatted for the platform node is running on or risk file not found problems (use the IISNode.yml to debug).  Since I have the root jsx file in the `app` folder, and process.cwd() returns different paths on dev/linux versus windows I am checking the environment and setting the view path differently.
 
-To deploy to azure login to portal.azure.com and first create an app service
-* click `App Services`
-* click `+ Add` in the top nav bar
-* select `Web App`
-* click `Create` in the right Pane.
-* create the stack as you want it.
+To deploy to azure login to portal.azure.com and first create an app service:
+* Click `App Services`
+* Click `+ Add` in the top nav bar
+* Select `Web App`
+* Click `Create` in the right Pane.
+* Create the stack as you want it.
 
 After that's created, click into the created app service from the dashboard or under `App Services`.
   * Select `Deployment Options` under App Deploy in the long list of options.
@@ -88,4 +88,4 @@ To configure
 ##TODO
 * Document how Redux works
 * Way more documentation explaining what the heck is going on
-* update to react-hot-middleware when version 3.0 comes out
+* Update to react-hot-middleware when version 3.0 comes out
