@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes  from 'prop-types';
+import { Switch, withRouter } from 'react-router';
+import { hot } from 'react-hot-loader';
 
 import { Footer } from './common/index';
 import { Route } from 'react-router-dom';
 import routes from '../routes';
 
+@hot(module)
+@withRouter
 export default class AppRoot extends Component {
 
   RenderSubRoute(route, index) {
@@ -17,11 +21,10 @@ export default class AppRoot extends Component {
   }
   //likely put the nav in here too at the top
   render() {
-    return (
-      <div>
-      {routes.map(this.RenderSubRoute)}
-        <Footer />
-      </div>
-    );
+    return [(
+        <Switch key="root-content-switch">{routes.map(this.RenderSubRoute)}</Switch>
+      ), (
+        <Footer key="root-footer" />
+    )];
   }
 }

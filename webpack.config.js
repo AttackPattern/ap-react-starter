@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const browserslist = require('browserslist');
 const webpack = require('webpack');
 
-const config = require('./config/app.js');
+const config = require('./config').default('app');
 const ASSETS_PATH = config.assets.path;
 const TARGET = process.env.npm_lifecycle_event;
 
@@ -14,15 +14,21 @@ const browsersListConfig = {
   browsers: 'last 2 versions,iOS >= 8,Safari >= 8',
 }
 const sassLoaders = [
-  { loader: 'style-loader' },
-  { loader: 'css-loader', options: { minimize: true, importLoaders: 1 } },
+  {loader: 'style-loader'},
+  {
+    loader: 'css-loader',
+    options: {
+      importLoaders: 2,
+      sourceMap: true
+  }},
   {
     loader: 'postcss-loader',
     options: {
       ident: 'postcss',
-      plugins: () => {
-          return [autoprefixer(browsersListConfig)];
-      },
+      sourceMap: true,
+      plugins: loader => [
+        autoprefixer(),
+      ]
     }
   },
   {
@@ -33,16 +39,13 @@ const sassLoaders = [
   },
 ];
 
-isDev = TARGET === 'dev';
+const isDev = TARGET === 'dev';
 
 const entry = {
   dev: [
-    'react-hot-loader/patch',
-    `webpack-dev-server/client?${WEBPACK_DEV_URL}`,
-    'webpack/hot/only-dev-server',
     config.assets.entryScript,
   ],
-  prod: ['babel-polyfill', config.assets.entryScript],
+  prod: ['babel/polyfill', config.assets.entryScript],
 }
 const sass = {
   dev: sassLoaders,
@@ -64,8 +67,8 @@ const output = {
 };
 const plugins = {
   dev: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {

@@ -5,8 +5,8 @@ const ServerLayout = ({assets, environment, markup, stores}) => {
   return (
     <html>
       <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="description" content="Awesome description bro" />
         <meta name="keywords" content="awesome keywords bro" />
         <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />

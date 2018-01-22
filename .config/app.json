@@ -1,0 +1,24 @@
+{
+  "port": "8088",
+  "assets": {
+    "path": "/public",
+    "compilePath": "public",
+    "entryScript": "app/client.jsx",
+    "manifest": "asset-manifest.json"
+  },
+  "locale": {
+    "code": "en-US",
+    "language": "en"
+  },
+  "node": {
+    "env": "dev"
+  },
+  "urls": {
+    "read": "http://localhost/read",
+    "services": "http://localhost/services"
+  },
+  "webpack": {
+    "host": "localhost",
+    "port": "8089"
+  }
+}

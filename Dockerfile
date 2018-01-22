@@ -8,9 +8,13 @@ ENV APP_PORT=3000
 
 EXPOSE $APP_PORT
 
-RUN npm install -g webpack --silent
-WORKDIR $SOURCE
-ADD . $SOURCE
+RUN yarn global add webpack
 
-RUN npm install --silent
+COPY ./package.json $SOURCE/package.json
+WORKDIR $SOURCE
+
+RUN yarn
+ADD . $SOURCE
+RUN ls -al ./node_modules | grep babel
+
 CMD npm run prod

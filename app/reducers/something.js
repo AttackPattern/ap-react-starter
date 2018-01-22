@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux'
 import * as Actions from '../actions/something';
 
 //define the shape of the store object
@@ -8,7 +7,7 @@ const initialState = {
   error: false,
 }
 
-const something = (state = initialState, action) => {
+export default (state = initialState, action) => {
 
   switch (action.type) {
     /**
@@ -42,10 +41,3 @@ const something = (state = initialState, action) => {
       break;
   }
 }
-
-//if we add another reducer, move this into it's own index file in side reducers
-const appReducer = combineReducers({
-  something,
-});
-
-export default appReducer;
